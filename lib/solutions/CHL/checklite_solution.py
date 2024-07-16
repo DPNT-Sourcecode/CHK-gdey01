@@ -95,7 +95,3 @@ def checklite(skus):
 
     return total_cost
 
-
-
-print(checklite("3A 2B C 3D"))
-
