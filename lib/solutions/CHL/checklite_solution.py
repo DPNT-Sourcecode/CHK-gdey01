@@ -25,17 +25,6 @@ def initialize_SKUs():
     SKU_dict['D'] = SKUPriceMap(15, {})
     return SKU_dict
 
-def parse_string(skus):
-    """
-    - param[0] = a String containing the SKUs of all the products in the basket
-     Okay assuming it's a space separated string?! 3A 4B 2C kinda thing? 
-     I mean in fairness it kinda doesn't matter
-    """
-    stack = []
-    for item in skus:
-        pass
-
-    pass
 
 def checklite(skus):
     """
@@ -51,10 +40,25 @@ def checklite(skus):
 
     Ideally I'd like to keep the models separate - Use a separate one for special offers.
     If there was an actual db I think it makes much more sense to separate the models
+
+    - param[0] = a String containing the SKUs of all the products in the basket
+     Okay assuming it's a space separated string?! 3A 4B 2C kinda thing? 
+     I mean in fairness it kinda doesn't matter -
+     how this string is formatted (or even if it is delimitted?)
+     otherwise I think just splitting it and then using this makes much more sense
     """
     SKU_dict = initialize_SKUs()
 
+    stack = []
+    for item in skus:
+        if item.isnum():
+            stack.append(item)
+        elif item.isalpha():
+            if item not in SKU_dict.keys():
+                return -1
+
     pass
+
 
 
 
