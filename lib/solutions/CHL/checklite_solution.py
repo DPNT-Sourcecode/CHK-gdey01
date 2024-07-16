@@ -94,4 +94,3 @@ def checklite(skus):
             pass
 
     return total_cost
-

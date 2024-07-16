@@ -81,9 +81,3 @@ def checkout(skus):
 
     return total_cost
 
-
-
-print(checkout("AAAAAAAAAAAAABBBCC-"))
-
-
-
