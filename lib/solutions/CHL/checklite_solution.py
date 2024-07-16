@@ -8,21 +8,26 @@ class SKUPriceMap:
     """
     item: String
     price: float/int
-    special_offers: dict
-    Keeps the item, the price and a dictionary to store special offers
-    The dict keeps them in a qty: price format 
+    special_offers: SpecialOffers
+    Keeps the item, the price and the special offers
     """
     def __init__(self, price, special_offers):
         self.price = price
         self.special_offers = special_offers
 
+class SpecialOffers:
+
+    def __init__(self, qty, price):
+        self.qty = qty
+        self.price = price
+
 
 def initialize_SKUs():
     SKU_dict = {}
-    SKU_dict['A'] = SKUPriceMap(50, {3: 130})
-    SKU_dict['B'] = SKUPriceMap(30, {2: 45})
-    SKU_dict['C'] = SKUPriceMap(20, {})
-    SKU_dict['D'] = SKUPriceMap(15, {})
+    SKU_dict['A'] = SKUPriceMap(50, SpecialOffers(3, 130))
+    SKU_dict['B'] = SKUPriceMap(30, SpecialOffers(2, 45))
+    SKU_dict['C'] = SKUPriceMap(20, None)
+    SKU_dict['D'] = SKUPriceMap(15, None)
     return SKU_dict
 
 
@@ -64,9 +69,15 @@ def checklite(skus):
                 if len(stack) > 0:
                     # The stack is valid?
                     str_num = ''.join(stack)
+                    sku = SKU_dict[item]
+                    if sku.special_offers:
+                        quotent = str_num // sku.special_offers.qty
+                        remainder = str_num % sku.special_offers.qty
+                    # We should check if the num is a multiple of special offers
 
 
     pass
+
 
 
 
