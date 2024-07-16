@@ -54,6 +54,19 @@ def checkout(skus):
      otherwise I think just splitting it and then using this makes much more sense
 
      Changed it up because it wasn't that haha
+
+
+    +------+-------+------------------------+
+    | Item | Price | Special offers         |
+    +------+-------+------------------------+
+    | A    | 50    | 3A for 130, 5A for 200 |
+    | B    | 30    | 2B for 45              |
+    | C    | 20    |                        |
+    | D    | 15    |                        |
+    | E    | 40    | 2E get one B free      |
+    +------+-------+------------------------+
+
+
     """
     SKU_dict = initialize_SKUs()
     total_cost = 0
@@ -80,4 +93,5 @@ def checkout(skus):
         return -1
 
     return total_cost
+
 
