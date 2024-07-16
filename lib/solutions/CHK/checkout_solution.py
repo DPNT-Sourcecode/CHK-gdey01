@@ -99,7 +99,3 @@ def checkout(skus):
 
     return total_cost
 
-
-
-
-
