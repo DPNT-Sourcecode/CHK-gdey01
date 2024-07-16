@@ -96,7 +96,8 @@ def checkout(skus):
         cost = 0
         if value.special_offers:
             # We should check if the num is a multiple of special offers
-            for offer_quantity in list(value.special_offers.keys()).sort(reverse = True):
+            [value.special_offers.keys()].sort(reverse = True)
+            for offer_quantity in [value.special_offers.keys()].sort(reverse = True):
                 if isinstance(value.special_offers[offer_quantity], int):
                     quotent = count // offer_quantity
                     cost += quotent * value.special_offers[offer_quantity]
@@ -113,5 +114,3 @@ def checkout(skus):
 
 
 print(checkout("AAAAA"))
-
-
