@@ -15,21 +15,21 @@ class SKUPriceMap:
         self.price = price
         self.special_offers = special_offers
 
-class SpecialOffers:
-
-    def __init__(self, qty, price=None, thing=None):
-        self.qty = qty
-        self.price = price
-        self.thing = thing
-
 
 def initialize_SKUs():
     SKU_dict = {}
-    SKU_dict['A'] = SKUPriceMap(50, [SpecialOffers(3, price=130), SpecialOffers(5, price=200)])
-    SKU_dict['B'] = SKUPriceMap(30, [SpecialOffers(2, price=45)])
+    SKU_dict['A'] = SKUPriceMap(50, {
+                        3: 130,
+                        5: 200
+                    })
+    SKU_dict['B'] = SKUPriceMap(30, {
+                        2: 45
+                    })
     SKU_dict['C'] = SKUPriceMap(20, [])
     SKU_dict['D'] = SKUPriceMap(15, [])
-    SKU_dict['E'] = SKUPriceMap(15, [SpecialOffers(2, thing='B')])
+    SKU_dict['E'] = SKUPriceMap(15, {
+                        2: 'B'
+                    })
     return SKU_dict
 
 
@@ -83,10 +83,11 @@ def checkout(skus):
             skus = skus.replace(item, '')
             if value.special_offers:
                 # We should check if the num is a multiple of special offers
-                quotent = count // value.special_offers.qty
-                remainder = count % value.special_offers.qty
+                for offers in value.special_offers.keys().sort(reverse = True):
+                    quotent = count // value.special_offers.qty
+                    remainder = count % value.special_offers.qty
 
-                cost = quotent * value.special_offers.price + remainder * value.price
+                    cost = quotent * value.special_offers.price + remainder * value.price
                 
             else:
                 cost = value.price * count
@@ -97,6 +98,7 @@ def checkout(skus):
         return -1
 
     return total_cost
+
 
 
 
