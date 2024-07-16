@@ -73,29 +73,43 @@ def checkout(skus):
     SKU_dict = initialize_SKUs()
     total_cost = 0
 
+    count_dict = {}
+
     if not set(skus).intersection(set(SKU_dict.keys())) == set(skus):
         return -1
 
+    for item in SKU_dict.keys():
+        count = skus.count(item)
+        count_dict[item] = count
+
     for item, value in SKU_dict.items():
 
-        if item in skus:
-            count = skus.count(item)
-            skus = skus.replace(item, '')
-            if value.special_offers:
-                # We should check if the num is a multiple of special offers
-                for offers in value.special_offers.keys().sort(reverse = True):
-                    quotent = count // value.special_offers.qty
-                    remainder = count % value.special_offers.qty
+        if value.special_offers:
+            # We should check if the num is a multiple of special offers
+            for offer_quantity in value.special_offers.keys():
+                if isinstance(value.special_offers[offer_quantity], str):
+                    # One of those free ones
+                    count_dict[value.special_offers[offer_quantity]] -= 1
 
-                    cost = quotent * value.special_offers.price + remainder * value.price
-                
-            else:
-                cost = value.price * count
-            
-            total_cost += cost
+    for item, value in SKU_dict.items():
 
-    if skus:
-        return -1
+        count = 0
+        cost = 0
+        if value.special_offers:
+            # We should check if the num is a multiple of special offers
+            for offer_quantity in value.special_offers.keys().sort(reverse = True):
+                if isinstance(value.special_offers[offer_quantity], int):
+                    quotent = count // offer_quantity
+                    cost += quotent * value.special_offers[offer_quantity]
+                    count = count - quotent * offer_quantity
+                if count:
+                    cost += count * value.price
+    
+        else:
+            cost = value.price * count
+        
+        total_cost += cost
 
     return total_cost
+
 
