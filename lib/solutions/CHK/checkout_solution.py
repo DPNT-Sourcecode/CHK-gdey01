@@ -84,11 +84,13 @@ def checkout(skus):
 
     for item, value in SKU_dict.items():
 
-        if value.special_offers and count_dict[item] > 0:
+        if value.special_offers:
             # We kinda have to check the str ones first and adjust the quantities
             for offer_quantity in value.special_offers.keys():
                 if isinstance(value.special_offers[offer_quantity], str):
-                    count_dict[value.special_offers[offer_quantity]] -= 1
+                    if count_dict[item] > 0:
+                        quotent = count_dict[item] // offer_quantity
+                        count_dict[value.special_offers[offer_quantity]] -= 1 * quotent
 
     for item, value in SKU_dict.items():
 
@@ -115,6 +117,7 @@ def checkout(skus):
     return total_cost
 
 
-print(checkout("AAAAABB"))
+print(checkout("AAAAABBE"))
+
 
 
