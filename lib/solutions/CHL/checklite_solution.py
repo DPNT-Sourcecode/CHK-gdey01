@@ -77,9 +77,3 @@ def checklite(skus):
 
 
     pass
-
-
-
-
-
-
