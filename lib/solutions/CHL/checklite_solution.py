@@ -59,7 +59,7 @@ def checklite(skus):
     stack = []
     total_cost = 0
     for item in skus:
-        if item.isnum():
+        if item.isnumeric():
             stack.append(item)
         elif item.isalpha():
             if item not in SKU_dict.keys():
@@ -71,6 +71,7 @@ def checklite(skus):
                 if len(stack) > 0:
                     # The stack is valid?
                     str_num = ''.join(stack)
+                    stack = []
                 else:
                     # Maybe it's just qty =1 
                     str_num = 1
@@ -93,4 +94,8 @@ def checklite(skus):
             pass
 
     return total_cost
+
+
+
+print(checklite("3A 2B C 3D"))
 
