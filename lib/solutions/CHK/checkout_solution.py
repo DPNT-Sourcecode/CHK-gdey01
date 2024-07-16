@@ -17,17 +17,19 @@ class SKUPriceMap:
 
 class SpecialOffers:
 
-    def __init__(self, qty, price):
+    def __init__(self, qty, price=None, thing=None):
         self.qty = qty
         self.price = price
+        self.thing = thing
 
 
 def initialize_SKUs():
     SKU_dict = {}
-    SKU_dict['A'] = SKUPriceMap(50, [SpecialOffers(3, 130), SpecialOffers(5, 200)])
-    SKU_dict['B'] = SKUPriceMap(30, SpecialOffers(2, 45))
-    SKU_dict['C'] = SKUPriceMap(20, None)
-    SKU_dict['D'] = SKUPriceMap(15, None)
+    SKU_dict['A'] = SKUPriceMap(50, [SpecialOffers(3, price=130), SpecialOffers(5, price=200)])
+    SKU_dict['B'] = SKUPriceMap(30, [SpecialOffers(2, price=45)])
+    SKU_dict['C'] = SKUPriceMap(20, [])
+    SKU_dict['D'] = SKUPriceMap(15, [])
+    SKU_dict['E'] = SKUPriceMap(15, [SpecialOffers(2, thing='B')])
     return SKU_dict
 
 
@@ -95,6 +97,7 @@ def checkout(skus):
         return -1
 
     return total_cost
+
 
 
 
