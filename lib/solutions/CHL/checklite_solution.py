@@ -46,6 +46,8 @@ def checklite(skus):
      I mean in fairness it kinda doesn't matter -
      how this string is formatted (or even if it is delimitted?)
      otherwise I think just splitting it and then using this makes much more sense
+
+     Now I'm thinking what if the the qty is a float? (Realistically it makes no sense)
     """
     SKU_dict = initialize_SKUs()
 
@@ -55,9 +57,17 @@ def checklite(skus):
             stack.append(item)
         elif item.isalpha():
             if item not in SKU_dict.keys():
+                # The item is invalid
                 return -1
+            else:
+                # It's a Valid item
+                if len(stack) > 0:
+                    # The stack is valid?
+                    str_num = ''.join(stack)
+
 
     pass
+
 
 
 
