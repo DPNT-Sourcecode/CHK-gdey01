@@ -53,45 +53,10 @@ def checkout(skus):
      how this string is formatted (or even if it is delimitted?)
      otherwise I think just splitting it and then using this makes much more sense
 
-     Now I'm thinking what if the the qty is a float? (Realistically it makes no sense)
+     Changed it up because it wasn't that haha
     """
     SKU_dict = initialize_SKUs()
-
-    stack = []
     total_cost = 0
-
-    # for item in skus:
-    #     if item.isalpha():
-    #         if item not in SKU_dict.keys():
-    #             # The item is invalid
-    #             return -1
-    #         else:
-    #             # It's a Valid item
-    #             cost = 0
-    #             if len(stack) > 0:
-    #                 # The stack is valid?
-    #                 str_num = ''.join(stack)
-    #                 stack = []
-    #             else:
-    #                 # Maybe it's just qty =1 
-    #                 str_num = 1
-
-    #             sku = SKU_dict[item]
-    #             if sku.special_offers:
-    #                 # We should check if the num is a multiple of special offers
-    #                 quotent = int(str_num) // sku.special_offers.qty
-    #                 remainder = int(str_num) % sku.special_offers.qty
-
-    #                 cost = quotent * sku.special_offers.price + remainder * sku.price
-                    
-    #             else:
-    #                 cost = sku.price * int(str_num)
-                
-    #             total_cost += cost
-                
-    #     else:
-    #         # dunno if we should return -1 here? depending on the delim it might be invalid
-    #         pass
 
 
     for item, value in SKU_dict.items():
@@ -118,6 +83,7 @@ def checkout(skus):
 
 
 
-print(checkout("AAAAAAAAAAAAA"))
+print(checkout("AAAAAAAAAAAAABBBCC-"))
+
 
 
