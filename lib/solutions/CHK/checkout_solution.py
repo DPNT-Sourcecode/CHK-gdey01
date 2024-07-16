@@ -24,7 +24,7 @@ class SpecialOffers:
 
 def initialize_SKUs():
     SKU_dict = {}
-    SKU_dict['A'] = SKUPriceMap(50, SpecialOffers(3, 130))
+    SKU_dict['A'] = SKUPriceMap(50, [SpecialOffers(3, 130), SpecialOffers(5, 200)])
     SKU_dict['B'] = SKUPriceMap(30, SpecialOffers(2, 45))
     SKU_dict['C'] = SKUPriceMap(20, None)
     SKU_dict['D'] = SKUPriceMap(15, None)
@@ -71,6 +71,8 @@ def checkout(skus):
     SKU_dict = initialize_SKUs()
     total_cost = 0
 
+    if not set(skus).intersection(set(SKU_dict.keys())) == set(skus):
+        return -1
 
     for item, value in SKU_dict.items():
 
@@ -93,5 +95,6 @@ def checkout(skus):
         return -1
 
     return total_cost
+
 
 
