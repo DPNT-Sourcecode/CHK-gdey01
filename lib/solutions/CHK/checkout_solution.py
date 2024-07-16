@@ -59,40 +59,65 @@ def checkout(skus):
 
     stack = []
     total_cost = 0
-    for item in skus:
-        if item.isnumeric():
-            stack.append(item)
-        elif item.isalpha():
-            if item not in SKU_dict.keys():
-                # The item is invalid
-                return -1
-            else:
-                # It's a Valid item
-                cost = 0
-                if len(stack) > 0:
-                    # The stack is valid?
-                    str_num = ''.join(stack)
-                    stack = []
-                else:
-                    # Maybe it's just qty =1 
-                    str_num = 1
 
-                sku = SKU_dict[item]
-                if sku.special_offers:
-                    # We should check if the num is a multiple of special offers
-                    quotent = int(str_num) // sku.special_offers.qty
-                    remainder = int(str_num) % sku.special_offers.qty
+    # for item in skus:
+    #     if item.isalpha():
+    #         if item not in SKU_dict.keys():
+    #             # The item is invalid
+    #             return -1
+    #         else:
+    #             # It's a Valid item
+    #             cost = 0
+    #             if len(stack) > 0:
+    #                 # The stack is valid?
+    #                 str_num = ''.join(stack)
+    #                 stack = []
+    #             else:
+    #                 # Maybe it's just qty =1 
+    #                 str_num = 1
 
-                    cost = quotent * sku.special_offers.price + remainder * sku.price
+    #             sku = SKU_dict[item]
+    #             if sku.special_offers:
+    #                 # We should check if the num is a multiple of special offers
+    #                 quotent = int(str_num) // sku.special_offers.qty
+    #                 remainder = int(str_num) % sku.special_offers.qty
+
+    #                 cost = quotent * sku.special_offers.price + remainder * sku.price
                     
-                else:
-                    cost = sku.price * int(str_num)
+    #             else:
+    #                 cost = sku.price * int(str_num)
                 
-                total_cost += cost
+    #             total_cost += cost
                 
-        else:
-            # dunno if we should return -1 here? depending on the delim it might be invalid
-            pass
+    #     else:
+    #         # dunno if we should return -1 here? depending on the delim it might be invalid
+    #         pass
+
+
+    for item, value in SKU_dict.items():
+
+        if item in skus:
+            count = skus.count(item)
+            skus = skus.replace(item, '')
+            if value.special_offers:
+                # We should check if the num is a multiple of special offers
+                quotent = count // value.special_offers.qty
+                remainder = count % value.special_offers.qty
+
+                cost = quotent * value.special_offers.price + remainder * value.price
+                
+            else:
+                cost = value.price * count
+            
+            total_cost += cost
+
+    if skus:
+        return -1
 
     return total_cost
+
+
+
+print(checkout("AAAAAAAAAAAAA"))
+
 
