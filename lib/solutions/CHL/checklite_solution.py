@@ -57,6 +57,7 @@ def checklite(skus):
     SKU_dict = initialize_SKUs()
 
     stack = []
+    total_cost = 0
     for item in skus:
         if item.isnum():
             stack.append(item)
@@ -66,14 +67,30 @@ def checklite(skus):
                 return -1
             else:
                 # It's a Valid item
+                cost = 0
                 if len(stack) > 0:
                     # The stack is valid?
                     str_num = ''.join(stack)
-                    sku = SKU_dict[item]
-                    if sku.special_offers:
-                        quotent = str_num // sku.special_offers.qty
-                        remainder = str_num % sku.special_offers.qty
+                else:
+                    # Maybe it's just qty =1 
+                    str_num = 1
+
+                sku = SKU_dict[item]
+                if sku.special_offers:
                     # We should check if the num is a multiple of special offers
+                    quotent = int(str_num) // sku.special_offers.qty
+                    remainder = int(str_num) % sku.special_offers.qty
 
+                    cost = quotent * sku.special_offers.price + remainder * sku.price
+                    
+                else:
+                    cost = sku.price * int(str_num)
+                
+                total_cost += cost
+                
+        else:
+            # dunno if we should return -1 here? depending on the delim it might be invalid
+            pass
 
-    pass
+    return total_cost
+
