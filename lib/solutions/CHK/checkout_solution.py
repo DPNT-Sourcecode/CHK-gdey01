@@ -190,13 +190,13 @@ def checkout(skus):
 
     if remainder or quotent:
         for key, value in zip(applicable_keys, applicable_items):
-            if remainder > count_dict[key] and remainder > 0:
+            if remainder == 0:
+                count_dict[key] = 0
+            elif remainder > count_dict[key]:
                 remainder = remainder - count_dict[key]
-            elif remainder < count_dict[key] and remainder > 0:
+            elif remainder < count_dict[key]:
                 count_dict[key] = remainder
                 remainder = 0
-            elif remainder == 0:
-                count_dict[key] = 0
 
     for item, value in SKU_dict.items():
 
@@ -231,6 +231,7 @@ def checkout(skus):
 
 
 print(checkout("STXS"))
+
 
 
 
