@@ -30,8 +30,8 @@ def initialize_SKUs():
     SKU_dict['E'] = SKUPriceMap(40, {
                         2: 'B'
                     })
-    SKU_dict['E'] = SKUPriceMap(10, {
-                        2: 'F'
+    SKU_dict['F'] = SKUPriceMap(10, {
+                        3: 20
                     })
     return SKU_dict
 
@@ -129,7 +129,8 @@ def checkout(skus):
     return total_cost
 
 
-print(checkout("FFF"))
+print(checkout("FFFFF"))
+
 
 
 
