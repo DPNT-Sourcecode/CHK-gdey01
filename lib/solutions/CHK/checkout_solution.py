@@ -30,6 +30,9 @@ def initialize_SKUs():
     SKU_dict['E'] = SKUPriceMap(40, {
                         2: 'B'
                     })
+    SKU_dict['E'] = SKUPriceMap(10, {
+                        2: 'F'
+                    })
     return SKU_dict
 
 
@@ -68,6 +71,18 @@ def checkout(skus):
     | E    | 40    | 2E get one B free      |
     +------+-------+------------------------+
 
+    
+    Our price table and offers: 
+    +------+-------+------------------------+
+    | Item | Price | Special offers         |
+    +------+-------+------------------------+
+    | A    | 50    | 3A for 130, 5A for 200 |
+    | B    | 30    | 2B for 45              |
+    | C    | 20    |                        |
+    | D    | 15    |                        |
+    | E    | 40    | 2E get one B free      |
+    | F    | 10    | 2F get one F free      |
+    +------+-------+------------------------+
 
     """
     SKU_dict = initialize_SKUs()
@@ -114,7 +129,8 @@ def checkout(skus):
     return total_cost
 
 
-print(checkout("C"))
+print(checkout("FFF"))
+
 
 
 
