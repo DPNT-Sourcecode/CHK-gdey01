@@ -39,6 +39,38 @@ def initialize_SKUs():
                         10: 80
                     })
     SKU_dict['I'] = SKUPriceMap(35, {})
+    SKU_dict['J'] = SKUPriceMap(60, {})
+    SKU_dict['K'] = SKUPriceMap(80, {
+                        2: 150
+                    })
+    SKU_dict['L'] = SKUPriceMap(90, {})
+    SKU_dict['M'] = SKUPriceMap(15, {})
+    SKU_dict['N'] = SKUPriceMap(40, {
+                        3: 'M'
+                    })
+    SKU_dict['O'] = SKUPriceMap(10, {})
+    SKU_dict['P'] = SKUPriceMap(50, {
+                        5: 200
+                    })
+    SKU_dict['Q'] = SKUPriceMap(30, {
+                        3: 80
+                    })
+    SKU_dict['R'] = SKUPriceMap(50, {
+                        3: 'Q'
+                    })
+    SKU_dict['S'] = SKUPriceMap(30, {})
+    SKU_dict['T'] = SKUPriceMap(20, {})
+    SKU_dict['U'] = SKUPriceMap(40, {
+                        4: 120
+                    })
+    SKU_dict['V'] = SKUPriceMap(50, {
+                        2: 90,
+                        2: 130
+                    })
+    SKU_dict['W'] = SKUPriceMap(20, {})
+    SKU_dict['X'] = SKUPriceMap(90, {})
+    SKU_dict['Y'] = SKUPriceMap(10, {})
+    SKU_dict['Z'] = SKUPriceMap(50, {})
     return SKU_dict
 
 
@@ -173,10 +205,3 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
-
-
-
-
-
-
-
