@@ -173,8 +173,9 @@ def checkout(skus):
         count_dict[item] = count
 
     # apply group offer
-    applicable_items = [{'S': SKU_dict['S']} , {'T': SKU_dict['T']}, {'X': SKU_dict['X']}, {'Y': SKU_dict['Y']}, {'Z': SKU_dict['Z']}]
-    applicable_items.sort(key=lambda x,y: y.price, reverse=True)
+
+    applicable_items = [SKU_dict['S'], SKU_dict['T'], SKU_dict['X'], SKU_dict['Y'], SKU_dict['Z']]
+    applicable_items.sort(key=lambda x: x.price, reverse=True)
 
     for item in applicable_items:
         pass
@@ -212,5 +213,6 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
 
 
