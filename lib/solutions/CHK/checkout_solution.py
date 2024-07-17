@@ -188,7 +188,7 @@ def checkout(skus):
 
     applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price))
 
-    if remainder:
+    if remainder or quotent:
         for key, value in zip(applicable_keys, applicable_items):
             if remainder > count_dict[key] and remainder > 0:
                 remainder = remainder - count_dict[key]
@@ -196,7 +196,7 @@ def checkout(skus):
                 count_dict[key] = remainder
                 remainder = 0
             elif remainder == 0:
-                count[key] = 0
+                count_dict[key] = 0
 
     for item, value in SKU_dict.items():
 
@@ -230,5 +230,6 @@ def checkout(skus):
     return total_cost
 
 
-print(checkout("FFFFF"))
+print(checkout("STXS"))
+
 
