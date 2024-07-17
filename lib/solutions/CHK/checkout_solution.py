@@ -194,7 +194,7 @@ def checkout(skus):
                 count_dict[key] = 0
             elif remainder > count_dict[key]:
                 remainder = remainder - count_dict[key]
-            elif remainder < count_dict[key]:
+            elif remainder <= count_dict[key]:
                 count_dict[key] = remainder
                 remainder = 0
 
@@ -231,6 +231,7 @@ def checkout(skus):
 
 
 print(checkout("STXS"))
+
 
 
 
