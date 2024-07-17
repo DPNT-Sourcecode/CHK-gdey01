@@ -186,7 +186,7 @@ def checkout(skus):
 
     total_cost += quotent * 45
 
-    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price))
+    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price, reverse=True))
 
     if remainder or quotent:
         for key, value in zip(applicable_keys, applicable_items):
@@ -231,5 +231,6 @@ def checkout(skus):
 
 
 print(checkout("STXS"))
+
 
 
