@@ -93,7 +93,6 @@ def checkout(skus):
                         count_dict[value.special_offers[offer_quantity]] -= 1 * quotent
 
     for item, value in SKU_dict.items():
-
         cost = 0
         if value.special_offers:
             # We should check if the num is a multiple of special offers
@@ -118,3 +117,4 @@ def checkout(skus):
 
 
 print(checkout("AAAAABBEE"))
+
