@@ -65,7 +65,7 @@ def initialize_SKUs():
                     })
     SKU_dict['V'] = SKUPriceMap(50, {
                         2: 90,
-                        2: 130
+                        3: 130
                     })
     SKU_dict['W'] = SKUPriceMap(20, {})
     SKU_dict['X'] = SKUPriceMap(90, {})
@@ -205,3 +205,4 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
