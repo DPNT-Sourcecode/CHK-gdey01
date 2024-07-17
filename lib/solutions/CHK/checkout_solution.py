@@ -176,10 +176,15 @@ def checkout(skus):
 
     applicable_items = [SKU_dict['S'], SKU_dict['T'], SKU_dict['X'], SKU_dict['Y'], SKU_dict['Z']]
     applicable_keys = ['S', 'T', 'X', 'Y', 'Z']
+
+    group_total_count = 0
+    for item in applicable_keys:
+        group_total_count += count_dict[item]
+
     applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price, reverse=True))
 
-    for item in zip(applicable_keys, applicable_items):
-        print(item, item[1].price)
+    for key, value in zip(applicable_keys, applicable_items):
+        count_dict[key]
 
     for item, value in SKU_dict.items():
 
@@ -214,5 +219,6 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
 
 
