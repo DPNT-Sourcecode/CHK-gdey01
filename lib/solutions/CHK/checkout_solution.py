@@ -176,10 +176,10 @@ def checkout(skus):
 
     applicable_items = [SKU_dict['S'], SKU_dict['T'], SKU_dict['X'], SKU_dict['Y'], SKU_dict['Z']]
     applicable_keys = ['S', 'T', 'X', 'Y', 'Z']
-    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price))
+    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price, reverse=True))
 
     for item in zip(applicable_keys, applicable_items):
-        print(item)
+        print(item, item[1].price)
 
     for item, value in SKU_dict.items():
 
@@ -214,4 +214,5 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
 
