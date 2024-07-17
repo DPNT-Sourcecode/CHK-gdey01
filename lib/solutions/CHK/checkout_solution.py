@@ -105,6 +105,11 @@ def checkout(skus):
                         cost += quotent * value.special_offers[offer_quantity]
                         count_dict[item] = count_dict[item] - quotent * offer_quantity
 
+            if count_dict[item] > 0:
+                cost += count_dict[item] * value.price
+                count_dict[item] = count_dict[item] - quotent * offer_quantity
+                
+
         else:
             if count_dict[item] > 0:
                 cost = value.price * count_dict[item]
@@ -115,5 +120,6 @@ def checkout(skus):
 
 
 print(checkout("AAAAABBEE"))
+
 
 
