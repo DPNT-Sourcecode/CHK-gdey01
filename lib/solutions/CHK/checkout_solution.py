@@ -120,8 +120,3 @@ def checkout(skus):
 
 
 print(checkout("AAAAABBEE"))
-
-
-
-
-
