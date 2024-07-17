@@ -172,7 +172,7 @@ def checkout(skus):
         count = skus.count(item)
         count_dict[item] = count
 
-    # apply group offer
+    # apply group offer 45
 
     applicable_items = [SKU_dict['S'], SKU_dict['T'], SKU_dict['X'], SKU_dict['Y'], SKU_dict['Z']]
     applicable_keys = ['S', 'T', 'X', 'Y', 'Z']
@@ -180,11 +180,22 @@ def checkout(skus):
     group_total_count = 0
     for item in applicable_keys:
         group_total_count += count_dict[item]
+    
+    quotent = group_total_count // 3
+    remainder = group_total_count % 3
 
-    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price, reverse=True))
+    total_cost += quotent * 45
 
-    for key, value in zip(applicable_keys, applicable_items):
-        count_dict[key]
+    applicable_keys, applicable_items = zip(*sorted(zip(applicable_keys, applicable_items), key=lambda x: x[1].price))
+
+    if remainder:
+        for key, value in zip(applicable_keys, applicable_items):
+            if remainder > count_dict[key] and remainder > 0:
+                remainder = remainder - count_dict[key]
+            elif remainder < count_dict[key] and remainder > 0:
+                count_dict[key] = remainder
+                remainder = 0
+                break
 
     for item, value in SKU_dict.items():
 
@@ -219,6 +230,7 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
 
 
 
