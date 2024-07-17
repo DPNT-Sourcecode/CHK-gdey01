@@ -195,7 +195,8 @@ def checkout(skus):
             elif remainder < count_dict[key] and remainder > 0:
                 count_dict[key] = remainder
                 remainder = 0
-                break
+            elif remainder == 0:
+                count[key] = 0
 
     for item, value in SKU_dict.items():
 
@@ -230,3 +231,4 @@ def checkout(skus):
 
 
 print(checkout("FFFFF"))
+
